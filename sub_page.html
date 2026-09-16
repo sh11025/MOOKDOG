@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>묵독 MOOKDOG - 카탈로그</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0..1,0"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["Pretendard", "sans-serif"],
+              serif: ["Noto Serif KR", "serif"],
+            },
+          },
+        },
+      };
+    </script>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body class="bg-[#fbf9f9] text-[#1b1c1c] font-sans antialiased min-h-screen flex flex-col">
+    <!-- 네비게이션 바 -->
+    <nav class="sticky top-0 z-50 bg-[#fbf9f9] h-20 border-b border-black px-4 md:px-12 flex justify-between items-center">
+      <div class="flex items-center gap-8">
+        <a href="main_page.html" class="block">
+          <img src="image/logo.png" alt="묵독 MOOKDOG" class="h-12 w-auto object-contain" />
+        </a>
+        <div class="hidden md:flex gap-6 text-xs font-semibold uppercase tracking-wider">
+          <a href="main_page.html" class="text-neutral-500 hover:text-black transition-colors">홈</a>
+          <a href="sub_page.html" class="text-black border-b-2 border-black pb-1">카탈로그</a>
+          <a href="shop_page.html" class="text-neutral-500 hover:text-black transition-colors">큐레이션</a>
+        </div>
+      </div>
+      <div class="flex items-center gap-4">
+        <div class="relative hidden md:block">
+          <input
+            id="search-input"
+            type="text"
+            placeholder="도서명, 저자 검색..."
+            onkeydown="if(event.key === 'Enter'){ executeSearch(); }"
+            class="border-b border-black bg-transparent py-1 pr-8 text-sm focus:outline-none placeholder:text-neutral-500 w-44 focus:w-60 transition-all"
+          />
+          <span onclick="executeSearch()" class="material-symbols-outlined absolute right-0 top-1 text-sm text-black cursor-pointer">search</span>
+        </div>
+        <button onclick="openCart()" class="relative hover:text-neutral-500 transition-colors" title="장바구니 확인">
+          <span class="material-symbols-outlined">shopping_cart</span>
+          <span id="cart-badge" class="absolute -top-1 -right-1 bg-black text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center hidden">0</span>
+        </button>
+      </div>
+    </nav>
+
+    <!-- 카탈로그 본문 -->
+    <main class="flex-grow flex flex-col md:flex-row w-full max-w-7xl mx-auto px-4 md:px-12 py-8 md:py-16 gap-8">
+      <!-- 좌측 필터 사이드바 -->
+      <aside id="filter-sidebar" class="fixed inset-y-0 left-0 z-50 w-72 bg-[#fbf9f9] p-6 -translate-x-full transition-transform duration-300 md:translate-x-0 md:static md:w-60 md:p-0 md:z-auto shrink-0 md:border-r border-black md:pr-6 md:sticky top-28 self-start md:h-[calc(100vh-140px)] overflow-y-auto">
+        <div class="flex justify-between items-center md:hidden mb-6 border-b border-black pb-3">
+          <h2 class="font-serif text-xl font-bold uppercase">필터</h2>
+          <button onclick="closeFilter()" class="text-black"><span class="material-symbols-outlined">close</span></button>
+        </div>
+        <div class="mb-8">
+          <div class="hidden md:flex justify-between items-center mb-6">
+            <h2 class="font-serif text-2xl font-bold uppercase">필터</h2>
+            <button onclick="resetFilters()" class="text-[11px] uppercase tracking-wider text-neutral-500 hover:text-black underline">초기화</button>
+          </div>
+
+          <!-- (1) 카테고리 & 상세 카테고리 (계층형) -->
+          <div class="mb-6">
+            <div class="flex justify-between items-center mb-3">
+              <h3 class="text-xs font-semibold uppercase tracking-wider text-neutral-500">카테고리</h3>
+            </div>
+            
+            <div class="space-y-3 text-sm">
+              <!-- 대분류 1: 소설/문학 -->
+              <div class="border-b border-neutral-200 pb-2">
+                <div class="flex items-center justify-between">
+                  <label class="flex items-center gap-2 cursor-pointer font-medium">
+                    <input type="checkbox" value="소설,문학,한국소설,영미소설,추리,미스터리,시,에세이" onchange="handleCategoryChange()" class="main-category-cb rounded-none border-black accent-black w-4 h-4" />
+                    <span>소설/문학</span>
+                  </label>
+                  <button type="button" onclick="toggleSubCategory('sub-cat-1', this)" class="text-xs text-neutral-400 hover:text-black p-1">
+                    <span class="material-symbols-outlined text-base transition-transform duration-200">expand_more</span>
+                  </button>
+                </div>
+                <div id="sub-cat-1" class="hidden pl-6 pt-2 space-y-1.5 text-xs text-neutral-600">
+                  <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" value="한국소설" onchange="handleCategoryChange()" class="category-checkbox rounded-none border-neutral-300 accent-black w-3.5 h-3.5" /><span>한국소설</span></label>
+                  <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" value="영미소설" onchange="handleCategoryChange()" class="category-checkbox rounded-none border-neutral-300 accent-black w-3.5 h-3.5" /><span>영미소설</span></label>
+                  <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" value="추리,미스터리" onchange="handleCategoryChange()" class="category-checkbox rounded-none border-neutral-300 accent-black w-3.5 h-3.5" /><span>추리/미스터리</span></label>
+                  <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" value="시" onchange="handleCategoryChange()" class="category-checkbox rounded-none border-neutral-300 accent-black w-3.5 h-3.5" /><span>시</span></label>
+                  <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" value="에세이" onchange="handleCategoryChange()" class="category-checkbox rounded-none border-neutral-300 accent-black w-3.5 h-3.5" /><span>에세이</span></label>
+                </div>
+              </div>
+
+              <!-- 대분류 2: 경제/경영 -->
+              <div class="border-b border-neutral-200 pb-2">
+                <div class="flex items-center justify-between">
+                  <label class="flex items-center gap-2 cursor-pointer font-medium">
+                    <input type="checkbox" value="경제,경영,재테크,주식,마케팅" onchange="handleCategoryChange()" class="main-category-cb rounded-none border-black accent-black w-4 h-4" />
+                    <span>경제/경영</span>
+                  </label>
+                  <button type="button" onclick="toggleSubCategory('sub-cat-2', this)" class="text-xs text-neutral-400 hover:text-black p-1">
+                    <span class="material-symbols-outlined text-base transition-transform duration-200">expand_more</span>
+                  </button>
+                </div>
+                <div id="sub-cat-2" class="hidden pl-6 pt-2 space-y-1.5 text-xs text-neutral-600">
+                  <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" value="재테크" onchange="handleCategoryChange()" class="category-checkbox rounded-none border-neutral-300 accent-black w-3.5 h-3.5" /><span>재테크</span></label>
+                  <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" value="주식" onchange="handleCategoryChange()" class="category-checkbox rounded-none border-neutral-300 accent-black w-3.5 h-3.5" /><span>주식</span></label>
+                  <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" value="마케팅" onchange="handleCategoryChange()" class="category-checkbox rounded-none border-neutral-300 accent-black w-3.5 h-3.5" /><span>마케팅</span></label>
+                  <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" value="경영 일반,경영" onchange="handleCategoryChange()" class="category-checkbox rounded-none border-neutral-300 accent-black w-3.5 h-3.5" /><span>경영 일반</span></label>
+                </div>
+              </div>
+
+              <!-- 대분류 3: 자기계발 -->
+              <div class="border-b border-neutral-200 pb-2">
+                <div class="flex items-center justify-between">
+                  <label class="flex items-center gap-2 cursor-pointer font-medium">
+                    <input type="checkbox" value="자기계발,성공,처세,대화,시간 관리,습관" onchange="handleCategoryChange()" class="main-category-cb rounded-none border-black accent-black w-4 h-4" />
+                    <span>자기계발</span>
+                  </label>
+                  <button type="button" onclick="toggleSubCategory('sub-cat-3', this)" class="text-xs text-neutral-400 hover:text-black p-1">
+                    <span class="material-symbols-outlined text-base transition-transform duration-200">expand_more</span>
+                  </button>
+                </div>
+                <div id="sub-cat-3" class="hidden pl-6 pt-2 space-y-1.5 text-xs text-neutral-600">
+                  <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" value="성공" onchange="handleCategoryChange()" class="category-checkbox rounded-none border-neutral-300 accent-black w-3.5 h-3.5" /><span>성공</span></label>
+                  <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" value="처세" onchange="handleCategoryChange()" class="category-checkbox rounded-none border-neutral-300 accent-black w-3.5 h-3.5" /><span>처세술</span></label>
+                  <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" value="대화" onchange="handleCategoryChange()" class="category-checkbox rounded-none border-neutral-300 accent-black w-3.5 h-3.5" /><span>대화법</span></label>
+                  <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" value="시간 관리,습관" onchange="handleCategoryChange()" class="category-checkbox rounded-none border-neutral-300 accent-black w-3.5 h-3.5" /><span>시간 관리</span></label>
+                </div>
+              </div>
+
+              <!-- 대분류 4: 인문/역사/철학 -->
+              <div class="border-b border-neutral-200 pb-2">
+                <div class="flex items-center justify-between">
+                  <label class="flex items-center gap-2 cursor-pointer font-medium">
+                    <input type="checkbox" value="인문,역사,철학,심리학,종교" onchange="handleCategoryChange()" class="main-category-cb rounded-none border-black accent-black w-4 h-4" />
+                    <span>인문/역사/철학</span>
+                  </label>
+                  <button type="button" onclick="toggleSubCategory('sub-cat-4', this)" class="text-xs text-neutral-400 hover:text-black p-1">
+                    <span class="material-symbols-outlined text-base transition-transform duration-200">expand_more</span>
+                  </button>
+                </div>
+                <div id="sub-cat-4" class="hidden pl-6 pt-2 space-y-1.5 text-xs text-neutral-600">
+                  <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" value="역사" onchange="handleCategoryChange()" class="category-checkbox rounded-none border-neutral-300 accent-black w-3.5 h-3.5" /><span>역사</span></label>
+                  <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" value="심리학,심학" onchange="handleCategoryChange()" class="category-checkbox rounded-none border-neutral-300 accent-black w-3.5 h-3.5" /><span>심학(심리학)</span></label>
+                  <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" value="종교" onchange="handleCategoryChange()" class="category-checkbox rounded-none border-neutral-300 accent-black w-3.5 h-3.5" /><span>종교</span></label>
+                  <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" value="철학" onchange="handleCategoryChange()" class="category-checkbox rounded-none border-neutral-300 accent-black w-3.5 h-3.5" /><span>철학 도서</span></label>
+                </div>
+              </div>
+
+              <!-- 대분류 5: 기타 분야 -->
+              <div class="border-b border-neutral-200 pb-2">
+                <div class="flex items-center justify-between">
+                  <label class="flex items-center gap-2 cursor-pointer font-medium">
+                    <input type="checkbox" value="기타,과학,컴퓨터,IT,예술,여행,가정,육아" onchange="handleCategoryChange()" class="main-category-cb rounded-none border-black accent-black w-4 h-4" />
+                    <span>기타 분야</span>
+                  </label>
+                  <button type="button" onclick="toggleSubCategory('sub-cat-5', this)" class="text-xs text-neutral-400 hover:text-black p-1">
+                    <span class="material-symbols-outlined text-base transition-transform duration-200">expand_more</span>
+                  </button>
+                </div>
+                <div id="sub-cat-5" class="hidden pl-6 pt-2 space-y-1.5 text-xs text-neutral-600">
+                  <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" value="과학" onchange="handleCategoryChange()" class="category-checkbox rounded-none border-neutral-300 accent-black w-3.5 h-3.5" /><span>과학</span></label>
+                  <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" value="컴퓨터,IT" onchange="handleCategoryChange()" class="category-checkbox rounded-none border-neutral-300 accent-black w-3.5 h-3.5" /><span>컴퓨터/IT</span></label>
+                  <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" value="예술" onchange="handleCategoryChange()" class="category-checkbox rounded-none border-neutral-300 accent-black w-3.5 h-3.5" /><span>예술</span></label>
+                  <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" value="여행" onchange="handleCategoryChange()" class="category-checkbox rounded-none border-neutral-300 accent-black w-3.5 h-3.5" /><span>여행</span></label>
+                  <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" value="가정,육아" onchange="handleCategoryChange()" class="category-checkbox rounded-none border-neutral-300 accent-black w-3.5 h-3.5" /><span>가정/육아</span></label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- (2) 포맷 -->
+          <div class="mb-6 border-t border-black pt-5">
+            <h3 class="text-xs font-semibold uppercase tracking-wider mb-3 text-neutral-500">포맷</h3>
+            <div class="flex flex-wrap gap-2 text-xs font-semibold uppercase">
+              <button type="button" onclick="setFormatFilter('all', this)" class="format-btn border border-black px-3 py-1.5 bg-black text-white transition-colors">전체</button>
+              <button type="button" onclick="setFormatFilter('종이책', this)" class="format-btn border border-neutral-400 px-3 py-1.5 text-neutral-600 hover:border-black hover:text-black transition-colors">종이책</button>
+              <button type="button" onclick="setFormatFilter('전자책', this)" class="format-btn border border-neutral-400 px-3 py-1.5 text-neutral-600 hover:border-black hover:text-black transition-colors">전자책</button>
+            </div>
+          </div>
+
+          <!-- (3) 가격 범위 (듀얼 슬라이더 + 직접 입력) -->
+          <div class="mb-6 border-t border-black pt-5">
+            <div class="flex justify-between items-center mb-2">
+              <h3 class="text-xs font-semibold uppercase tracking-wider text-neutral-500">가격 범위</h3>
+              <span id="price-range-label" class="text-xs font-semibold text-black">₩0 ~ ₩50,000</span>
+            </div>
+
+            <div class="dual-slider-container my-3">
+              <div class="slider-track-bg"></div>
+              <div id="slider-track-highlight" class="slider-track-highlight"></div>
+              <input
+                id="range-min"
+                type="range"
+                min="0"
+                max="50000"
+                step="1000"
+                value="0"
+                oninput="handleMinChange(this.value)"
+                class="dual-range-input"
+              />
+              <input
+                id="range-max"
+                type="range"
+                min="0"
+                max="50000"
+                step="1000"
+                value="50000"
+                oninput="handleMaxChange(this.value)"
+                class="dual-range-input"
+              />
+            </div>
+
+            <div class="flex items-center gap-2 mt-3">
+              <div class="relative flex-1">
+                <span class="absolute left-2.5 top-1/2 -translate-y-1/2 text-xs text-neutral-400 font-serif">₩</span>
+                <input
+                  id="input-min-price"
+                  type="number"
+                  min="0"
+                  max="50000"
+                  step="1000"
+                  value="0"
+                  onchange="handleMinInputBlur(this.value)"
+                  onkeydown="if(event.key==='Enter'){ handleMinInputBlur(this.value); }"
+                  class="w-full pl-6 pr-2 py-1.5 text-xs font-semibold border border-neutral-300 bg-white focus:outline-none focus:border-black transition-colors"
+                  placeholder="최소"
+                />
+              </div>
+              <span class="text-xs text-neutral-400 font-bold">~</span>
+              <div class="relative flex-1">
+                <span class="absolute left-2.5 top-1/2 -translate-y-1/2 text-xs text-neutral-400 font-serif">₩</span>
+                <input
+                  id="input-max-price"
+                  type="number"
+                  min="0"
+                  max="50000"
+                  step="1000"
+                  value="50000"
+                  onchange="handleMaxInputBlur(this.value)"
+                  onkeydown="if(event.key==='Enter'){ handleMaxInputBlur(this.value); }"
+                  class="w-full pl-6 pr-2 py-1.5 text-xs font-semibold border border-neutral-300 bg-white focus:outline-none focus:border-black transition-colors"
+                  placeholder="최대"
+                />
+              </div>
+            </div>
+          </div>
+
+          <!-- (4) 정렬 기준 -->
+          <div class="border-t border-black pt-5">
+            <h3 class="text-xs font-semibold uppercase tracking-wider mb-3 text-neutral-500">정렬 기준</h3>
+            <select id="sort-select" onchange="handleSortChange(this.value)" class="w-full border-b border-black bg-transparent py-2 text-sm focus:outline-none cursor-pointer">
+              <option value="accuracy">추천순 (정확도순)</option>
+              <option value="recency">최신순</option>
+              <option value="price-asc">가격: 낮은순</option>
+              <option value="price-desc">가격: 높은순</option>
+            </select>
+          </div>
+
+          <div class="mt-6 pt-5 border-t border-black md:hidden flex gap-2">
+            <button onclick="resetFilters()" class="w-1/3 border border-black py-3 text-xs font-semibold uppercase hover:bg-neutral-100">초기화</button>
+            <button onclick="closeFilter()" class="w-2/3 bg-black text-white text-xs font-semibold uppercase py-3 border border-black hover:bg-transparent hover:text-black transition-colors">결과 보기</button>
+          </div>
+        </div>
+      </aside>
+
+      <div id="filter-overlay" onclick="closeFilter()" class="fixed inset-0 bg-black/40 z-40 hidden md:hidden"></div>
+
+      <!-- 우측 도서 목록 그리드 -->
+      <div class="flex-grow w-full">
+        <div class="md:hidden flex justify-between items-center mb-6 border-b border-black pb-3">
+          <button onclick="openFilter()" class="flex items-center gap-1.5 text-xs font-semibold uppercase border border-black px-3.5 py-1.5">
+            <span class="material-symbols-outlined text-sm">tune</span> 필터
+          </button>
+          <select id="sort-select-mobile" onchange="handleSortChange(this.value)" class="bg-transparent text-xs font-semibold uppercase focus:outline-none border-none py-1">
+            <option value="accuracy">추천순</option>
+            <option value="recency">최신순</option>
+            <option value="price-asc">가격: 낮은순</option>
+            <option value="price-desc">가격: 높은순</option>
+          </select>
+        </div>
+
+        <div class="mb-8 hidden md:flex justify-between items-end border-b border-black pb-4">
+          <div>
+            <h1 class="font-serif text-3xl md:text-4xl font-bold">모든 도서</h1>
+            <p id="results-count" class="text-sm text-neutral-500 mt-1">도서 목록을 불러오는 중입니다...</p>
+          </div>
+        </div>
+
+        <div id="books-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-16 min-h-[400px]"></div>
+
+        <div id="empty-state" class="hidden py-24 text-center flex flex-col items-center justify-center border border-dashed border-neutral-300 mb-16">
+          <span class="material-symbols-outlined text-5xl text-neutral-400 mb-3">menu_book</span>
+          <h3 class="font-serif text-xl font-bold mb-1">일치하는 도서가 없습니다.</h3>
+          <p class="text-sm text-neutral-500 mb-6">필터 조건을 변경하거나 다른 검색어를 입력해 보세요.</p>
+          <button onclick="resetFilters()" class="bg-black text-white text-xs font-semibold uppercase px-6 py-3 border border-black hover:bg-transparent hover:text-black transition-colors">필터 초기화</button>
+        </div>
+
+        <div id="pagination-container" class="flex justify-center items-center gap-1.5 mt-10 border-t border-black pt-8"></div>
+      </div>
+    </main>
+
+    <!-- 푸터 -->
+    <footer class="w-full py-10 px-4 md:px-12 mt-20 flex flex-col md:flex-row justify-between items-start md:items-center gap-6 border-t border-black bg-[#fbf9f9]">
+      <img src="image/logo.png" alt="묵독 MOOKDOG" class="h-10 w-auto object-contain" />
+      <div class="flex flex-wrap gap-6 text-xs uppercase tracking-wider text-neutral-600">
+        <a href="shop_page.html" class="hover:text-black transition-colors">소개</a>
+        <a href="shop_page.html" class="hover:text-black transition-colors">배송</a>
+        <a href="shop_page.html" class="hover:text-black transition-colors">개인정보처리방침</a>
+        <a href="shop_page.html" class="hover:text-black transition-colors">인스타그램</a>
+      </div>
+      <div class="text-xs text-neutral-500">© 2024 MOOKDOG. 모든 권리 보유.</div>
+    </footer>
+
+    <!-- 장바구니 드로어 -->
+    <div id="cart-drawer" class="fixed right-0 top-0 h-full z-[60] bg-[#fbf9f9] border-l border-black w-full md:w-96 translate-x-full transition-transform duration-300 flex flex-col shadow-2xl">
+      <div class="flex justify-between items-center p-5 border-b border-black">
+        <h2 class="font-serif text-xl font-bold">장바구니</h2>
+        <button onclick="closeCart()" class="text-black hover:text-neutral-500"><span class="material-symbols-outlined">close</span></button>
+      </div>
+      <div id="cart-items-container" class="flex-grow overflow-y-auto p-5 space-y-4"></div>
+      <div class="border-t border-black p-5 bg-[#fbf9f9]">
+        <div class="flex justify-between mb-4 font-serif text-lg font-bold"><span>합계</span><span id="cart-total-price">₩0</span></div>
+        <button onclick="proceedToCheckoutFromCart()" class="block w-full bg-black text-white text-xs font-semibold uppercase py-4 border border-black text-center hover:bg-white hover:text-black transition-colors">주문하기</button>
+      </div>
+    </div>
+    <div id="modal-overlay" onclick="closeAllModals()" class="fixed inset-0 bg-black/40 z-[55] hidden transition-opacity opacity-0 backdrop-blur-sm"></div>
+
+    <!-- Quick View 모달 -->
+    <div id="quickview-modal" class="fixed inset-0 z-[60] hidden flex items-center justify-center p-4">
+      <div class="bg-[#fbf9f9] border border-black w-full max-w-2xl p-6 md:p-8 shadow-2xl relative">
+        <button onclick="closeQuickView()" class="absolute top-4 right-4 text-black hover:text-neutral-500"><span class="material-symbols-outlined">close</span></button>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-start mt-2">
+          <div class="border border-black bg-white p-4 flex justify-center items-center aspect-[2/3] max-h-[320px] mx-auto">
+            <img id="qv-image" src="" alt="" class="w-full h-full object-cover shadow-sm" />
+          </div>
+          <div class="space-y-4">
+            <div>
+              <span id="qv-publisher" class="text-[10px] uppercase font-semibold text-neutral-600 border border-neutral-300 px-1.5 py-0.5"></span>
+              <h3 id="qv-title" class="font-serif text-2xl font-bold mt-2 leading-tight"></h3>
+              <p id="qv-author" class="text-xs text-neutral-500 mt-1"></p>
+            </div>
+            <div id="qv-price" class="font-serif text-xl font-bold"></div>
+            <p id="qv-description" class="text-sm text-neutral-600 leading-relaxed border-t border-black pt-3 line-clamp-4"></p>
+            <div class="flex gap-2 pt-2">
+              <button id="qv-add-btn" type="button" class="flex-1 bg-black text-white text-xs font-semibold uppercase py-3 border border-black hover:bg-white hover:text-black transition-colors">장바구니 담기</button>
+              <a id="qv-detail-link" href="#" class="px-4 flex items-center justify-center border border-black text-xs font-semibold uppercase hover:bg-neutral-100 transition-colors">상세보기</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 토스트 알림 -->
+    <div id="toast" class="fixed bottom-8 right-8 z-[70] translate-y-24 opacity-0 transition-all duration-300 pointer-events-none bg-[#1b1c1c] text-white px-5 py-4 border border-black shadow-2xl flex items-center gap-4 max-w-sm">
+      <span class="material-symbols-outlined text-green-400 text-lg">check_circle</span>
+      <div class="flex-grow">
+        <p id="toast-title" class="text-xs font-bold font-serif line-clamp-1"></p>
+        <p class="text-[11px] text-neutral-300">장바구니에 추가되었습니다.</p>
+      </div>
+      <button type="button" onclick="openCart(); hideToast();" class="text-[11px] font-semibold uppercase tracking-wider underline hover:text-neutral-300 pointer-events-auto">장바구니 보기</button>
+    </div>
+
+    <script src="js/cart.js"></script>
+    <script src="js/sub.js"></script>
+  </body>
+</html>

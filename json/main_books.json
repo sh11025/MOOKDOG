@@ -1,0 +1,155 @@
+{
+  "hero": [
+    {
+      "isbn": "9791198200006",
+      "title": "The White Room",
+      "authors": ["소피 마틴"],
+      "publisher": "문학과사상",
+      "price": 35000,
+      "sale_price": 35000,
+      "thumbnail": "https://lh3.googleusercontent.com/aida-public/AB6AXuCOiaqBZfJAxyE0JlKO0ZwaWJSQHh3_33BV_jAWoUrW27OKvTPoBeRlcOBWUSVtRvEc-tzvf4JhN7xrLFLm1TytbZ4PY1YLIpKeGHoZPO-OwdXsEOTFqkA2g7_6vypIdjNdHhrG86tFAohygSk-7DH0gqZflHdBb-yUIesKuW6BO6mjJtJKE7GHLhx0yGTN2HGyGmZq0bpaNURtUzxKQWeAKZaAXvbIkph9GaS2aBI2scZ1zVIfmKYS",
+      "contents": "완벽히 격리된 백색 공간 속에서 펼쳐지는 심리 미스터리 소설.",
+      "category": "소설/문학"
+    },
+    {
+      "isbn": "9791198200004",
+      "title": "Essays on Nothing",
+      "authors": ["데이비드 라이트"],
+      "publisher": "인문서가",
+      "price": 24000,
+      "sale_price": 21600,
+      "thumbnail": "https://lh3.googleusercontent.com/aida-public/AB6AXuBNkjub0nd9XWno9FbFiH44I7ztWXtzpSEP4IzKFtNaLOkYDiFgAOY7McNdBhqxKA02QRpENuoOhcezFp2KqjUu3rOyTJtuF7Vs6olAjdZXvY1xBcm6MgfDykrK7kbu2gTfLReeybibYpGMG5OHii6pQ_yxxLp7ihc_AZ5v6Jwwsmcthywpz0fDblJwjgiOUGT1gylkMWYk8O-6NldzNi9tpPe6J6e2Fx67lbcQDIkX5tjtBec2sDjB",
+      "contents": "공허와 부재 속에서 발견하는 존재론적 단상을 기록한 현대 철학 에세이집.",
+      "category": "인문/역사/철학"
+    },
+    {
+      "isbn": "9791198200002",
+      "title": "Silent Typography",
+      "authors": ["마커스 첸"],
+      "publisher": "타이포그라피랩",
+      "price": 32000,
+      "sale_price": 28800,
+      "thumbnail": "https://lh3.googleusercontent.com/aida-public/AB6AXuCgOqHFOOhseR230wptAFeB6Zj80-LPraE3oz-ahIM655eb51ddjfCGHYZOJp2078l5gc2pIX-fO9fL62PigypQh4zGu7GCqf5BIm3UOP_tjZKFrdCfITfbx5GFJfTjjOr4j_bskC1rDO3F6sMN7HwJr9a9i0ZUGSZHHrYbFTSRqrg99tJ_2-9kCr4IjVsTOJXdhsl7FCfeuDnOyZAE8fRQEikiLXf_89nii5ZloIPVM9EvM5P-siFI",
+      "contents": "현대 타이포그래피의 시각적 침묵과 여백의 미학을 탐구한 디자인 비평서.",
+      "category": "기타 분야"
+    },
+    {
+      "isbn": "9791198200001",
+      "title": "The Architecture of Silence",
+      "authors": ["엘레나 로스토바"],
+      "publisher": "아카이브프레스",
+      "price": 65000,
+      "sale_price": 58500,
+      "thumbnail": "https://lh3.googleusercontent.com/aida-public/AB6AXuBiJp0Mc92jYxBU8zr0q84ZnqonmfWEhuxNyN8w4wUpda28ngfQy7DSx3remk8Y-AViSbB0eh7d-hOmZmi-CobyEZDd7OqfylqgeHzEadNaDR2DyvFMHX1hIpzwqraS9vHmTRnJjuldo9f-OhWxgfvbhnL1m7ln-gwnJjtps-CVC0imMdp86M8syoy9u-AGNEYm1NOiCwbiGcJvPND_xuKzQlHvKfeym1H1jTWIxACi-F971Hrlt4Ie",
+      "contents": "현대인의 고립에 대한 심오한 탐구, 브루탈리스트 공간과 고요한 순간들의 기록.",
+      "category": "기타 분야"
+    },
+    {
+      "isbn": "9791198200003",
+      "title": "공간의 기하학",
+      "authors": ["마커스 쏜"],
+      "publisher": "스페이스아카이브",
+      "price": 24000,
+      "sale_price": 24000,
+      "thumbnail": "https://lh3.googleusercontent.com/aida-public/AB6AXuC3xDrI3Olbq1lHjvy5Klznq-A6C_4ORHkDBCDXwhnI9dRWGPlYa6iLqt1AUALDkhsnNJora2pj0ZNQzFrOQS1Riq5Hbm1FQ6mEHDfNTMGgQ2rk0gJ_SLOGNeXeTkGw54Qc4tcLELUgNuT1Y7fasiMVAPyR9YlqekYGtJnYrK2axAWK5hW-KE0ZApF1gMf4ULkz3bhNJJbfzoxx61XFL451-qiXyEi9Zv90MWiOmPz0F5L-5_6tflIv",
+      "contents": "물리학과 천문학의 관점에서 공간의 구조를 조망하는 과학 교양서.",
+      "category": "기타 분야"
+    }
+  ],
+  "newReleases": [
+    {
+      "isbn": "9791198200001",
+      "title": "코드 속의 메아리",
+      "authors": ["줄리안 밴스"],
+      "publisher": "아카이브프레스",
+      "price": 28000,
+      "sale_price": 28000,
+      "thumbnail": "https://lh3.googleusercontent.com/aida-public/AB6AXuCSyRj0gWEao9X6Z_Y-UzWLN8JozuGn1Kawgv67tyyzSWNFQJZcRfWEBtK7X3ytUwn-GAkT4bsPQyXJ39HRXh4UlDVNwn1N5A3r97x09av2HFsNOnrlLjDwn9oL2NaVkKh701Ww2eg3fTQ-TZ0ZCjCNUPLVRkRR0WWZ7E61jbDXCJbV95K7GW57MCr3Qh3psja-U4bbBR_CIGe9b4GkaNU8uD8HOtmo_pSkILzBCfbOSXU3uBrR_uDG"
+    },
+    {
+      "isbn": "9791198200002",
+      "title": "한밤의 식물학",
+      "authors": ["사라 젠킨스"],
+      "publisher": "보태니컬랩",
+      "price": 32500,
+      "sale_price": 32500,
+      "thumbnail": "https://lh3.googleusercontent.com/aida-public/AB6AXuAPscLpZtIyZ3ZrbQVrXbjMUgTLSkoH_z_z4fJWgv1xRqeIn9u8jkDavp5ujXevsBlr7fVuycW8jDueaZRtlIVEpNGxlxYJef4Tq0Z04o76uYhtqKgY8QLbwpHqfTjLMtK8fxzc1UUwPrKxuaEObOpwCbTpsdscLXzlxWFSfLj7okStrhp99lkBE6m0J0aeLVssbgpxx4XwYj72tZmc1AEzRkf-zBoOtkDbsim5Sow-TsMRbl-vuhrK"
+    },
+    {
+      "isbn": "9791198200003",
+      "title": "공간의 기하학",
+      "authors": ["마커스 쏜"],
+      "publisher": "스페이스아카이브",
+      "price": 24000,
+      "sale_price": 24000,
+      "thumbnail": "https://lh3.googleusercontent.com/aida-public/AB6AXuC3xDrI3Olbq1lHjvy5Klznq-A6C_4ORHkDBCDXwhnI9dRWGPlYa6iLqt1AUALDkhsnNJora2pj0ZNQzFrOQS1Riq5Hbm1FQ6mEHDfNTMGgQ2rk0gJ_SLOGNeXeTkGw54Qc4tcLELUgNuT1Y7fasiMVAPyR9YlqekYGtJnYrK2axAWK5hW-KE0ZApF1gMf4ULkz3bhNJJbfzoxx61XFL451-qiXyEi9Zv90MWiOmPz0F5L-5_6tflIv"
+    },
+    {
+      "isbn": "9791198200004",
+      "title": "콘크리트 지평선",
+      "authors": ["데이비드 아리스"],
+      "publisher": "도시건축사",
+      "price": 29000,
+      "sale_price": 29000,
+      "thumbnail": "https://lh3.googleusercontent.com/aida-public/AB6AXuBQUlZyW_DXkZFxvTvo1T1lQltS_kyLOGs0FVfG4r4hzYhzSbx0Ptu8EZ8p4ywpsGwxDBTGoNqWPvRRRJJTyw3mo09Im0rGjRyoC2HIWtZHSlvag4qwiRvt99bdNJjDckryyLZdUwt3MLGKdtOwAyq0Mc3lQVC0ONRmVxyuvFXPtHovLJOtfJBgZS3jxjOxMX4bTHXDTt7Sd9lMwVTPg0N3b-t0fPJn8ZZMYMzJZWJHcPCYhbqH5YMn"
+    }
+  ],
+  "bestSellers": [
+    {
+      "isbn": "9791198200003",
+      "title": "공간의 기하학",
+      "authors": ["마커스 쏜"],
+      "publisher": "스페이스아카이브",
+      "price": 24000,
+      "sale_price": 24000,
+      "thumbnail": "https://lh3.googleusercontent.com/aida-public/AB6AXuC3xDrI3Olbq1lHjvy5Klznq-A6C_4ORHkDBCDXwhnI9dRWGPlYa6iLqt1AUALDkhsnNJora2pj0ZNQzFrOQS1Riq5Hbm1FQ6mEHDfNTMGgQ2rk0gJ_SLOGNeXeTkGw54Qc4tcLELUgNuT1Y7fasiMVAPyR9YlqekYGtJnYrK2axAWK5hW-KE0ZApF1gMf4ULkz3bhNJJbfzoxx61XFL451-qiXyEi9Zv90MWiOmPz0F5L-5_6tflIv"
+    },
+    {
+      "isbn": "9791198200004",
+      "title": "콘크리트 지평선",
+      "authors": ["데이비드 아리스"],
+      "publisher": "도시건축사",
+      "price": 29000,
+      "sale_price": 29000,
+      "thumbnail": "https://lh3.googleusercontent.com/aida-public/AB6AXuBQUlZyW_DXkZFxvTvo1T1lQltS_kyLOGs0FVfG4r4hzYhzSbx0Ptu8EZ8p4ywpsGwxDBTGoNqWPvRRRJJTyw3mo09Im0rGjRyoC2HIWtZHSlvag4qwiRvt99bdNJjDckryyLZdUwt3MLGKdtOwAyq0Mc3lQVC0ONRmVxyuvFXPtHovLJOtfJBgZS3jxjOxMX4bTHXDTt7Sd9lMwVTPg0N3b-t0fPJn8ZZMYMzJZWJHcPCYhbqH5YMn"
+    },
+    {
+      "isbn": "9791198200001",
+      "title": "코드 속의 메아리",
+      "authors": ["줄리안 밴스"],
+      "publisher": "아카이브프레스",
+      "price": 28000,
+      "sale_price": 28000,
+      "thumbnail": "https://lh3.googleusercontent.com/aida-public/AB6AXuCSyRj0gWEao9X6Z_Y-UzWLN8JozuGn1Kawgv67tyyzSWNFQJZcRfWEBtK7X3ytUwn-GAkT4bsPQyXJ39HRXh4UlDVNwn1N5A3r97x09av2HFsNOnrlLjDwn9oL2NaVkKh701Ww2eg3fTQ-TZ0ZCjCNUPLVRkRR0WWZ7E61jbDXCJbV95K7GW57MCr3Qh3psja-U4bbBR_CIGe9b4GkaNU8uD8HOtmo_pSkILzBCfbOSXU3uBrR_uDG"
+    }
+  ],
+  "literatureBooks": [
+    {
+      "isbn": "9791198200006",
+      "title": "The White Room",
+      "authors": ["소피 마틴"],
+      "publisher": "문학과사상",
+      "price": 35000,
+      "sale_price": 35000,
+      "thumbnail": "https://lh3.googleusercontent.com/aida-public/AB6AXuCOiaqBZfJAxyE0JlKO0ZwaWJSQHh3_33BV_jAWoUrW27OKvTPoBeRlcOBWUSVtRvEc-tzvf4JhN7xrLFLm1TytbZ4PY1YLIpKeGHoZPO-OwdXsEOTFqkA2g7_6vypIdjNdHhrG86tFAohygSk-7DH0gqZflHdBb-yUIesKuW6BO6mjJtJKE7GHLhx0yGTN2HGyGmZq0bpaNURtUzxKQWeAKZaAXvbIkph9GaS2aBI2scZ1zVIfmKYS"
+    },
+    {
+      "isbn": "9791198200001",
+      "title": "코드 속의 메아리",
+      "authors": ["줄리안 밴스"],
+      "publisher": "아카이브프레스",
+      "price": 28000,
+      "sale_price": 28000,
+      "thumbnail": "https://lh3.googleusercontent.com/aida-public/AB6AXuCSyRj0gWEao9X6Z_Y-UzWLN8JozuGn1Kawgv67tyyzSWNFQJZcRfWEBtK7X3ytUwn-GAkT4bsPQyXJ39HRXh4UlDVNwn1N5A3r97x09av2HFsNOnrlLjDwn9oL2NaVkKh701Ww2eg3fTQ-TZ0ZCjCNUPLVRkRR0WWZ7E61jbDXCJbV95K7GW57MCr3Qh3psja-U4bbBR_CIGe9b4GkaNU8uD8HOtmo_pSkILzBCfbOSXU3uBrR_uDG"
+    },
+    {
+      "isbn": "9791198200004",
+      "title": "Essays on Nothing",
+      "authors": ["데이비드 라이트"],
+      "publisher": "인문서가",
+      "price": 24000,
+      "sale_price": 21600,
+      "thumbnail": "https://lh3.googleusercontent.com/aida-public/AB6AXuBNkjub0nd9XWno9FbFiH44I7ztWXtzpSEP4IzKFtNaLOkYDiFgAOY7McNdBhqxKA02QRpENuoOhcezFp2KqjUu3rOyTJtuF7Vs6olAjdZXvY1xBcm6MgfDykrK7kbu2gTfLReeybibYpGMG5OHii6pQ_yxxLp7ihc_AZ5v6Jwwsmcthywpz0fDblJwjgiOUGT1gylkMWYk8O-6NldzNi9tpPe6J6e2Fx67lbcQDIkX5tjtBec2sDjB"
+    }
+  ]
+}

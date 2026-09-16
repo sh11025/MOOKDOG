@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>묵독 MOOKDOG - 프리미엄 서점</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0..1,0"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["Pretendard", "sans-serif"],
+              serif: ["Noto Serif KR", "serif"],
+            },
+          },
+        },
+      };
+    </script>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body class="bg-[#fbf9f9] text-[#1b1c1c] font-sans antialiased min-h-screen flex flex-col">
+    <!-- 네비게이션 바 -->
+    <nav class="sticky top-0 z-50 bg-[#fbf9f9] h-20 border-b border-black px-4 md:px-12 flex justify-between items-center">
+      <div class="flex items-center gap-8">
+        <a href="main_page.html" class="block">
+          <img src="image/logo.png" alt="묵독 MOOKDOG" class="h-12 w-auto object-contain" />
+        </a>
+        <div class="hidden md:flex gap-6 text-xs font-semibold uppercase tracking-wider">
+          <a href="main_page.html" class="text-black border-b-2 border-black pb-1">홈</a>
+          <a href="sub_page.html" class="text-neutral-500 hover:text-black transition-colors">카탈로그</a>
+          <a href="sub_page.html" class="text-neutral-500 hover:text-black transition-colors">큐레이션</a>
+        </div>
+      </div>
+      <div class="flex items-center gap-4">
+        <div class="relative hidden md:block">
+          <input
+            id="main-search-input"
+            type="text"
+            placeholder="도서 검색..."
+            onkeydown="if(event.key === 'Enter'){ window.location.href='sub_page.html?search=' + encodeURIComponent(this.value); }"
+            class="border-b border-black bg-transparent py-1 pr-8 text-sm focus:outline-none placeholder:text-neutral-500 w-40 focus:w-56 transition-all"
+          />
+          <span class="material-symbols-outlined absolute right-0 top-1 text-sm text-black cursor-pointer">search</span>
+        </div>
+        <button onclick="openCart()" class="relative hover:text-neutral-500 transition-colors" title="장바구니 확인">
+          <span class="material-symbols-outlined">shopping_cart</span>
+          <span id="cart-badge" class="absolute -top-1 -right-1 bg-black text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center hidden">0</span>
+        </button>
+      </div>
+    </nav>
+
+    <main class="flex-grow flex flex-col gap-y-16 md:gap-y-24 py-8 md:py-16">
+      <!-- 히어로 배너 슬라이더 -->
+      <section class="max-w-7xl mx-auto w-full px-4 md:px-12">
+        <div class="relative border border-black overflow-hidden bg-[#fbf9f9]">
+          <div class="relative min-h-[460px] md:min-h-[400px]" id="hero-slider-container">
+            <div class="p-12 text-center text-sm text-neutral-400">추천 도서를 불러오는 중입니다...</div>
+          </div>
+          <button
+            id="hero-prev"
+            class="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 flex items-center justify-center bg-white/80 backdrop-blur-sm border border-black hover:bg-black hover:text-white transition-colors"
+          >
+            <span class="material-symbols-outlined text-sm">chevron_left</span>
+          </button>
+          <button
+            id="hero-next"
+            class="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 flex items-center justify-center bg-white/80 backdrop-blur-sm border border-black hover:bg-black hover:text-white transition-colors"
+          >
+            <span class="material-symbols-outlined text-sm">chevron_right</span>
+          </button>
+          <div id="hero-dots-container" class="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 flex gap-2"></div>
+        </div>
+      </section>
+
+      <!-- 섹션 1: 신간도서 -->
+      <section class="max-w-7xl mx-auto w-full px-4 md:px-12">
+        <div class="flex justify-between items-end mb-6 border-b border-black pb-3">
+          <h2 class="font-serif text-2xl md:text-3xl font-bold">신간도서</h2>
+          <a href="sub_page.html" class="text-xs font-semibold uppercase tracking-wider text-neutral-500 hover:text-black transition-colors flex items-center gap-1">
+            전체 보기 <span class="material-symbols-outlined text-sm">arrow_forward</span>
+          </a>
+        </div>
+        <div class="relative group/scroll">
+          <button type="button" class="absolute -left-3 top-[40%] -translate-y-1/2 z-10 w-9 h-9 bg-white border border-black flex items-center justify-center shadow-md opacity-0 group-hover/scroll:opacity-100 transition-opacity hover:bg-black hover:text-white" onclick="scrollCarousel('new-releases-list', -320)">
+            <span class="material-symbols-outlined text-sm">chevron_left</span>
+          </button>
+          <div id="new-releases-list" class="flex overflow-x-auto gap-5 no-scrollbar pb-4 min-h-[260px] items-center" style="scroll-behavior: smooth">
+            <p class="text-xs text-neutral-400 pl-2">도서 목록 로딩 중...</p>
+          </div>
+          <button type="button" class="absolute -right-3 top-[40%] -translate-y-1/2 z-10 w-9 h-9 bg-white border border-black flex items-center justify-center shadow-md opacity-0 group-hover/scroll:opacity-100 transition-opacity hover:bg-black hover:text-white" onclick="scrollCarousel('new-releases-list', 320)">
+            <span class="material-symbols-outlined text-sm">chevron_right</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- 섹션 2: 베스트 셀러 -->
+      <section class="max-w-7xl mx-auto w-full px-4 md:px-12">
+        <div class="flex justify-between items-end mb-6 border-b border-black pb-3">
+          <h2 class="font-serif text-2xl md:text-3xl font-bold">베스트 셀러</h2>
+          <a href="sub_page.html" class="text-xs font-semibold uppercase tracking-wider text-neutral-500 hover:text-black transition-colors flex items-center gap-1">
+            전체 보기 <span class="material-symbols-outlined text-sm">arrow_forward</span>
+          </a>
+        </div>
+        <div class="relative group/scroll">
+          <button type="button" class="absolute -left-3 top-[40%] -translate-y-1/2 z-10 w-9 h-9 bg-white border border-black flex items-center justify-center shadow-md opacity-0 group-hover/scroll:opacity-100 transition-opacity hover:bg-black hover:text-white" onclick="scrollCarousel('bestsellers-list', -320)">
+            <span class="material-symbols-outlined text-sm">chevron_left</span>
+          </button>
+          <div id="bestsellers-list" class="flex overflow-x-auto gap-5 no-scrollbar pb-4 min-h-[260px] items-center" style="scroll-behavior: smooth">
+            <p class="text-xs text-neutral-400 pl-2">도서 목록 로딩 중...</p>
+          </div>
+          <button type="button" class="absolute -right-3 top-[40%] -translate-y-1/2 z-10 w-9 h-9 bg-white border border-black flex items-center justify-center shadow-md opacity-0 group-hover/scroll:opacity-100 transition-opacity hover:bg-black hover:text-white" onclick="scrollCarousel('bestsellers-list', 320)">
+            <span class="material-symbols-outlined text-sm">chevron_right</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- 섹션 3: 문학 아카이브 -->
+      <section class="max-w-7xl mx-auto w-full px-4 md:px-12">
+        <div class="flex justify-between items-end mb-6 border-b border-black pb-3">
+          <div>
+            <h2 class="font-serif text-2xl md:text-3xl font-bold">문학 아카이브</h2>
+            <p class="text-xs text-neutral-500 mt-1">시간을 견뎌낸 깊이 있는 소설과 사색의 문장들</p>
+          </div>
+          <a href="sub_page.html?search=문학" class="text-xs font-semibold uppercase tracking-wider text-neutral-500 hover:text-black transition-colors flex items-center gap-1">
+            전체 보기 <span class="material-symbols-outlined text-sm">arrow_forward</span>
+          </a>
+        </div>
+        <div class="relative group/scroll">
+          <button type="button" class="absolute -left-3 top-[40%] -translate-y-1/2 z-10 w-9 h-9 bg-white border border-black flex items-center justify-center shadow-md opacity-0 group-hover/scroll:opacity-100 transition-opacity hover:bg-black hover:text-white" onclick="scrollCarousel('literature-books-list', -320)">
+            <span class="material-symbols-outlined text-sm">chevron_left</span>
+          </button>
+          <div id="literature-books-list" class="flex overflow-x-auto gap-5 no-scrollbar pb-4 min-h-[260px] items-center" style="scroll-behavior: smooth">
+            <p class="text-xs text-neutral-400 pl-2">도서 목록 로딩 중...</p>
+          </div>
+          <button type="button" class="absolute -right-3 top-[40%] -translate-y-1/2 z-10 w-9 h-9 bg-white border border-black flex items-center justify-center shadow-md opacity-0 group-hover/scroll:opacity-100 transition-opacity hover:bg-black hover:text-white" onclick="scrollCarousel('literature-books-list', 320)">
+            <span class="material-symbols-outlined text-sm">chevron_right</span>
+          </button>
+        </div>
+      </section>
+    </main>
+
+    <!-- 푸터 -->
+    <footer class="w-full py-10 px-4 md:px-12 mt-20 flex flex-col md:flex-row justify-between items-start md:items-center gap-6 border-t border-black bg-[#fbf9f9]">
+      <img src="image/logo.png" alt="묵독 MOOKDOG" class="h-10 w-auto object-contain" />
+      <div class="flex flex-wrap gap-6 text-xs uppercase tracking-wider text-neutral-600">
+        <a href="sub_page.html" class="hover:text-black transition-colors">소개</a>
+        <a href="sub_page.html" class="hover:text-black transition-colors">배송</a>
+        <a href="sub_page.html" class="hover:text-black transition-colors">개인정보처리방침</a>
+        <a href="sub_page.html" class="hover:text-black transition-colors">인스타그램</a>
+      </div>
+      <div class="text-xs text-neutral-500">© 2024 MOOKDOG. 모든 권리 보유.</div>
+    </footer>
+
+    <!-- 장바구니 드로어 -->
+    <div id="cart-drawer" class="fixed right-0 top-0 h-full z-[60] bg-[#fbf9f9] border-l border-black w-full md:w-96 translate-x-full transition-transform duration-300 flex flex-col shadow-2xl">
+      <div class="flex justify-between items-center p-5 border-b border-black">
+        <h2 class="font-serif text-xl font-bold">장바구니</h2>
+        <button onclick="closeCart()" class="text-black hover:text-neutral-500"><span class="material-symbols-outlined">close</span></button>
+      </div>
+      <div id="cart-items-container" class="flex-grow overflow-y-auto p-5 space-y-4"></div>
+      <div class="border-t border-black p-5 bg-[#fbf9f9]">
+        <div class="flex justify-between mb-4 font-serif text-lg font-bold"><span>합계</span><span id="cart-total-price">₩0</span></div>
+        <button onclick="proceedToCheckoutFromCart()" class="block w-full bg-black text-white text-xs font-semibold uppercase py-4 border border-black text-center hover:bg-white hover:text-black transition-colors">주문하기</button>
+      </div>
+    </div>
+    <div id="modal-overlay" onclick="closeCart()" class="fixed inset-0 bg-black/40 z-[55] hidden transition-opacity opacity-0 backdrop-blur-sm"></div>
+
+    <script src="js/cart.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>
