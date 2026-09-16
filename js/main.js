@@ -12,7 +12,7 @@ async function fetchKakaoBooks(query, size = 6, sort = "accuracy") {
   try {
     if (KAKAO_REST_API_KEY && KAKAO_REST_API_KEY !== "YOUR_KAKAO_REST_API_KEY") {
       const res = await fetch(`https://dapi.kakao.com/v3/search/book?query=${encodeURIComponent(query)}&sort=${sort}&size=${size}`, {
-        headers: { Authorization: `KakaoAK ${KAKAO_REST_API_KEY}` },
+        headers: getKakaoHeaders(),
       });
       const data = await res.json();
       if (data && data.documents && data.documents.length > 0) {

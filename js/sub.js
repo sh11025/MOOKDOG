@@ -122,7 +122,7 @@ async function fetchBooksFromAPI(query = "문학", sort = "accuracy", page = 1) 
   const apiSort = sort === "recency" ? "recency" : "accuracy";
   try {
     const res = await fetch(`https://dapi.kakao.com/v3/search/book?query=${encodeURIComponent(query)}&sort=${apiSort}&page=${page}&size=20`, {
-      headers: { Authorization: `KakaoAK ${KAKAO_REST_API_KEY}` },
+      headers: getKakaoHeaders(),
     });
     const data = await res.json();
     const docs = data.documents || [];

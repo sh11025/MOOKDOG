@@ -69,7 +69,7 @@ async function loadBookDetail() {
 
   try {
     const res = await fetch(`https://dapi.kakao.com/v3/search/book?query=${encodeURIComponent(query)}&size=5`, {
-      headers: { Authorization: `KakaoAK ${KAKAO_REST_API_KEY}` },
+      headers: getKakaoHeaders(),
     });
     const data = await res.json();
     const validDocs = (data.documents || []).filter((b) => {

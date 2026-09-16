@@ -1,5 +1,25 @@
 const KAKAO_REST_API_KEY = "c612fa579b6e426f3547a0ab5a8ebe99";
 
+/**
+ * 카카오 Open API 호출용 공통 헤더 생성 함수
+ * JavaScript 키의 사이트 도메인 제한(Origin 검증)을 통과하기 위해 KA 헤더를 포함합니다.
+ */
+function getKakaoHeaders() {
+  const origin =
+    typeof window !== "undefined" &&
+    window.location &&
+    window.location.origin &&
+    !window.location.origin.startsWith("file:") &&
+    window.location.origin !== "null"
+      ? window.location.origin
+      : "https://sh11025.github.io";
+
+  return {
+    Authorization: `KakaoAK ${KAKAO_REST_API_KEY}`,
+    KA: `sdk/1.43.0 os/javascript lang/ko-KR device/pc origin/${origin}`,
+  };
+}
+
 function getCart() {
   try {
     return JSON.parse(localStorage.getItem("the_archive_cart")) || [];
